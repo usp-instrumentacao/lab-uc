@@ -8,5 +8,7 @@ placas Arduino, porém, é necessário revisar a compatibilidade de
 funções dos pinos.
 
 ## Circuito
-![Foto do circuito montado em uma protoboard.](imagem_circuito_display_lcd.png)
+![Esquemático](esquematico.png)
+![Foto do circuito montado em uma protoboard.](imagem.png)
+
 
