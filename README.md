@@ -2,11 +2,15 @@
 Este repositório contem informações a respeito dos experimentos
 preparados para a disciplina de Introdução à Instrumentação Biomédica.
 
-Cada experimento é composto de um arquivo `README.md`(contem a
-descrissão geral do experimento), `codigo.ino` (código utilizado para
-a programação do microcontrolador), `esquematico.png` (esquemático
-elétrico do circuito montado) e `imagem.png` (foto do circuito montado
-em uma protoboard junto da identificação dos componentes).
+Cada experimento é composto de um arquivo `README.md` que contém a
+descrissão geral e especificações do experimento, uma ou mais pastas
+com nomenclatura iniciada em `cod_arduino_' contendo os códigos `.ino` 
+(códigos utilizados para a programação do microcontrolador), um arquivo
+denominado `esquematico.png` exibindo o esquema de conexão do circuito 
+elétrico utilizado e um ou mais arquivos de imagem `.png` seguindo a 
+nomenclatura: `imagem1.png`, `imagem2.png`, etc. Essas imagens exibem 
+fotos do circuito montado em uma protoboard junto da identificação dos 
+componentes e outras informações gráficas relevantes ao experimento.
 
 Ao clicar em um dos hyperlinks neste arquivo, você será redirecionado
 para a pasta do experimento no GitHub, onde encontrará todos os
