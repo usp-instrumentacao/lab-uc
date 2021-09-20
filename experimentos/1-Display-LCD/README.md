@@ -7,6 +7,8 @@ desenvolvimento ESP32-DEVKIT1. Os códigos também são compatíveis
 placas Arduino, porém, é necessário revisar a compatibilidade de
 funções dos pinos.
 
+Teste
+
 ## Circuito
 ![Esquemático](esquematico.png)
 ![Foto do circuito montado em uma protoboard.](imagem.png)
