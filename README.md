@@ -13,6 +13,9 @@ para a pasta do experimento no GitHub, onde encontrará todos os
 arquivos mencionados. Você também pode navegar pelo repositório, onde
 os experimentos se encontram na pasta chamada `experimentos/`.
 
+## Instalação
+0. [Instalando o ESP32 na interface Arduino]
+
 ## Experimentos
 1. [Utilizando o Display LCD](https://github.com/Experimentos-Microcontroladores/instrumentacao-biomedica/tree/main/experimentos/1-Display-LCD)
 2. [Utilizando o Termistor (ou LDR)](https://github.com/Experimentos-Microcontroladores/instrumentacao-biomedica/tree/main/experimentos/2-Termistor-LDR)
