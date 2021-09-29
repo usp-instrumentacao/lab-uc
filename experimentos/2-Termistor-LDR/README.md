@@ -1,5 +1,8 @@
 # Utilizando o Termistor (ou LDR)
 
+## Introdução
+
+
 ## Código
 Códigos auxiliares para o utilização de módulos sensores de diversos
 tipos aliados ao microcontrolador ESP32 por meio da placa de
@@ -10,3 +13,4 @@ funções dos pinos.
 ## Circuito
 ![Esquemático](esquematico.png)
 ![Foto do circuito montado em uma protoboard.](imagem.png)
+
