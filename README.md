@@ -17,7 +17,7 @@ para a pasta do experimento no GitHub onde encontrará todos os
 arquivos mencionados. Você também pode navegar pelo repositório onde
 os experimentos se encontram na pasta chamada `experimentos/`.
 
-## Instalação
+## Introdução
 0. [Introdução à Plataforma Arduino e ao ESP32](https://github.com/Experimentos-Microcontroladores/instrumentacao-biomedica/tree/main/instalacao)
 
 ## Experimentos
