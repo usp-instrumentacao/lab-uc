@@ -4,29 +4,14 @@
 Neste experimento iremos demonstrar alguns princípios básicos da
 da plataforma Arduino através de um exemplo utilizando um display LCD.
 
-Caso ainda não tenha familiaridade com Arduino, é possível encontrar
-uma rica e diversa documentação em seu site, indo desde os princípios
-básicos até a utilização de bibliotecas mais específicas. Além do
-mais, saber buscar informações é muito mais importante do que sabe-las
-de cor.
-
-Aluns links interessantes relacionadas à documentação da plataforma
-Arduino:
-- [**Conhecimentos Básicos Diante o Ecossistema Arduino**](https://docs.arduino.cc/learn/)
-- [Tutoriais - Arduino](https://docs.arduino.cc/tutorials/)
-- [Documentação de Referência da Linguagem Arduino em Português](https://www.arduino.cc/reference/pt/)
-- [Get Started - ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html)
-
-É importante ressaltar que por mais que o microcontrolador utilizado
-nesse e nos próximos experimentos seja um ESP32, este é totalmente
-integrado e compatível com a plataforma Arduino, e portanto, um código
-feito para rodar em uma placa de desenvolvimento Arduino deve ser
-facilmente portável para um ESP32 e vice versa. As principais
-alterações envolvem o número dos pinos, que a princípio deve ficar
-claro que, a menos que sejam pinos de funções especiais, podem ser
-arbitrariamente escolhidos. 
-
 ## Display LCD
+
+Modulos de display LCD são uma ótima interface de comunicação visual e
+são utilizados em uma infinidade de projetos embarcados devido sua
+simplicidade. Um display exibe uma ou mais linhas de caracteres. No
+nosso experimento, utilizamos um display 16x2, ou seja, que possui
+duas linhas de 16 caracteres cada.
+
 O display LCD utilizado possui 16 pinos, resumidos a seguir:
 - 1 e 2: Alimentação (VDD ligado a 5V e VSS ligado ao GND).
 - 3: Pino de constraste, ligado ao potenciômetro RV1.
@@ -34,15 +19,35 @@ O display LCD utilizado possui 16 pinos, resumidos a seguir:
   como sendo de dados e 0 (desligado) sendo de instrução.
 - 5: Seleciona o modo do LCD para escrita (0) ou leitura (1). Ligado
   ao GND para o modo de apenas escrita.
-- 6: Pino de habilitação
+- 6: Pino de habilitação.
 - 7 ao 14: Pinos de dados. Utilizamos apenas 4 neste experimento, e
   portanto, cada dado é passado como um conjunto de 4 bits.
 - 15 e 16: Iluminação do LED.
 
-## Código
+Displays com este mesmo esquema de pinos são extremamente
+genéricos. No entando, podem existir displays que funcionam de maneira
+diferente e/ou com diferentes conformações de pinos, portanto, sempre
+verifique o datasheet dos dispositivos que estiver utilizando antes de
+começar a trabalhar.
 
+Você não precisa conhecer o funcionamento interno do LCD para ser
+capaz de utiliza-lo pois existem bibliotecas, ou seja, códigos já
+prontos que já implementam as funcionalidades de baixo nível do
+módulo. Bibliotecas são muito úteis pois fornecem uma camada de
+abstração na programação. A biblioteca utilizada neste experimento
+para o modulo, por exemplo, fornece metodos simples como `print()`,
+que escreve no display um ou mais caracteres especificados como
+parâmetro da função.
+
+Caso queira entender um pouco mais a fundo o funcionamento de displays
+LCD, há um ótimo artigo em:
+[https://www.embarcados.com.br/modulo-de-display-lcd/](https://www.embarcados.com.br/modulo-de-display-lcd/).
+ 
 ## Circuito
 ![Esquemático](esquematico.png)
 ![Foto do circuito montado em uma protoboard.](imagem.png)
+
+## Código
+
 
 
