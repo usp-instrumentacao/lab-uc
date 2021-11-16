@@ -45,9 +45,74 @@ LCD, há um ótimo artigo em:
  
 ## Circuito
 ![Esquemático](esquematico.png)
+
 ![Foto do circuito montado em uma protoboard.](imagem.png)
 
 ## Código
+Primeiramente, precisamos incluir a biblioteca para utilização do
+display LCD:
+```
+#include <LiquidCrystal.h>
+```	
+Após isso, definimos os pinos que serão utilizados para a
+interface com o LCD:
+```
+#define DISPLAY_RS 15
+#define DISPLAY_EN 2
+#define DISPLAY_D4 4
+#define DISPLAY_D5 16
+#define DISPLAY_D6 17
+#define DISPLAY_D7 5
+``` 
+A expressão `#define` não cria nenhuma variável na memória, apenas
+atribui um valor a uma expressão, que na hora da compilação do código
+será trocada pelo seu valor. Neste contexto, todo lugar no código que
+possuir a expressão `DISPLAY_RS` será compilada como se tivéssemos
+explicitamente colocado o número `15` no lugar. Isso é uma ótima
+prática de programação, pois torna o código mais legível e evita
+números arbitrários no meio do código. Caso conecte o display de
+maneira diferente, é necessário apenas mudar este escopo para se
+adequar ao seu modo de conexão (desde que todos esses pinos sejam
+digitais e de uso geral).
 
+Em seguida, nós instanciamos um objeto `display_lcd` da classe
+`LiquidCrystal` fornecida pela biblioteca:
+```
+LiquidCrystal display_lcd(DISPLAY_RS, DISPLAY_EN, DISPLAY_D4, DISPLAY_D5, DISPLAY_D6, DISPLAY_D7);
+```
+A criação do objeto é semelhante à de uma variável, com a diferença de
+que são passados argumentos para sua criação (neste caso os pinos
+definidos anteriormente).
 
+Por fim é declarada uma variável global que será utilizada como delay
+de execução do loop:
+```
+int dt=100;
+```
 
+Na função `setup()`, precisamos iniciar a comunicação serial, iniciar
+o display e também limpa-lo (isto é, apagar tudo que estiver escrito
+nele). Esta função é executada sempre que o microcontrolador é
+iniciado.
+```
+void setup() 
+{
+  //Inicia as comunicações seriais
+  Serial.begin(115200);
+
+  //Inicia o display 16x2
+  display_lcd.begin(16, 2);
+  display_lcd.setCursor(0,0); //Seleciona onde será iniciada a escrita (linha,coluna)
+  display_lcd.print("Iniciando..."); //Escreve "Iniciando..." no display
+
+  //Delay de inicialização
+  delay(2000);
+
+  //Limpa o display 16x2
+  display_lcd.clear();
+}
+```
+Ao cabo do setup, tudo estará configurado para utilizarmos posteriormente.
+ 
+A função `loop()` é executada indefinidamente (um loop infinito)
+enquanto o dispositivo estiver ligado.
