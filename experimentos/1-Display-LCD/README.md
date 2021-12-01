@@ -6,7 +6,7 @@ da plataforma Arduino através de um exemplo utilizando um display LCD.
 
 ## Display LCD
 
-Modulos de display LCD são uma ótima interface de comunicação visual e
+Módulos de display LCD são uma ótima interface de comunicação visual e
 são utilizados em uma infinidade de projetos embarcados devido sua
 simplicidade. Um display exibe uma ou mais linhas de caracteres. No
 nosso experimento, utilizamos um display 16x2, ou seja, que possui
@@ -14,7 +14,7 @@ duas linhas de 16 caracteres cada.
 
 O display LCD utilizado possui 16 pinos, resumidos a seguir:
 - 1 e 2: Alimentação (VDD ligado a 5V e VSS ligado ao GND).
-- 3: Pino de constraste, ligado ao potenciômetro RV1.
+- 3: Pino de constaste, ligado ao potenciômetro RV1.
 - 4: Selecionador de registro. 1 (ligado) seleciona os bits de entrada
   como sendo de dados e 0 (desligado) sendo de instrução.
 - 5: Seleciona o modo do LCD para escrita (0) ou leitura (1). Ligado
@@ -25,17 +25,17 @@ O display LCD utilizado possui 16 pinos, resumidos a seguir:
 - 15 e 16: Iluminação do LED.
 
 Displays com este mesmo esquema de pinos são extremamente
-genéricos. No entando, podem existir displays que funcionam de maneira
+genéricos. No entanto, podem existir displays que funcionam de maneira
 diferente e/ou com diferentes conformações de pinos, portanto, sempre
 verifique o datasheet dos dispositivos que estiver utilizando antes de
 começar a trabalhar.
 
 Você não precisa conhecer o funcionamento interno do LCD para ser
-capaz de utiliza-lo pois existem bibliotecas, ou seja, códigos já
+capaz de utilizá-lo pois existem bibliotecas, ou seja, códigos já
 prontos que já implementam as funcionalidades de baixo nível do
 módulo. Bibliotecas são muito úteis pois fornecem uma camada de
 abstração na programação. A biblioteca utilizada neste experimento
-para o modulo, por exemplo, fornece metodos simples como `print()`,
+para o modulo, por exemplo, fornece métodos simples como `print()`,
 que escreve no display um ou mais caracteres especificados como
 parâmetro da função.
 
@@ -91,7 +91,7 @@ int dt=100;
 ```
 
 Na função `setup()`, precisamos iniciar a comunicação serial, iniciar
-o display e também limpa-lo (isto é, apagar tudo que estiver escrito
+o display e também limpá-lo (isto é, apagar tudo que estiver escrito
 nele). Esta função é executada sempre que o microcontrolador é
 iniciado.
 ```
@@ -112,7 +112,44 @@ void setup()
   display_lcd.clear();
 }
 ```
-Ao cabo do setup, tudo estará configurado para utilizarmos posteriormente.
+No setup utilizamos `Serial.begin(115200)` para inicializar a
+comunicação serial. O parâmetro passado ao método (115200) é a
+*baud-rate*, frequência da comunicação serial em baud/s. 
+o método `display_lcd.begin()` inicia o display com o sua resolução
+como parâmetro (16x2). o método `display_lcd.setCursor()` define onde que será
+iniciada a escrita no display pelo método `display_lcd.print()`, que
+tem como parâmetro a string que conterá os caracteres a serem
+escritos. Temos também a função `delay()`, que basicamente diz ao
+microprocessador "esperar" um tempo (no caso 2000ms), deixando o
+sistema ocioso. Por fim, o método `display_lcd.clear()` limpa tudo que
+já foi escrito no display. 
  
-A função `loop()` é executada indefinidamente (um loop infinito)
+Após o setup, a função `loop()` é executada indefinidamente (um loop infinito)
 enquanto o dispositivo estiver ligado.
+```
+void loop()
+{
+  // Exibir texto no display
+  display_lcd.setCursor(0,0); //inicia texto na posição 0 da linha 0
+  display_lcd.print("Texto linha 0");
+  display_lcd.setCursor(0,1); //inicia texto na posição 0 da linha 1
+  display_lcd.print("Texto linha 1");
+  
+  // loop delay
+  delay(dt);
+}
+```
+Dentro do loop, temos os métodos do display `setCursor()` e `print()` novamente,
+escrevendo no display "Texto linha 0" e "Texto linha 1"
+respectivamente nas linhas 0 e 1. Por fim, o delay no final do loop
+determina o tempo que o microcontrolador deverá esperar antes de
+iniciar o loop novamente. Sempre é uma boa prática colocar delays em
+certas partes dos códigos, principalmente considerando que os
+dispositivos conectados podem necessitar de um certo tempo para
+"acomodar" os sinais elétricos (visto que cada dispositivo reage de um
+jeito aos sinais).
+
+## Conclusão
+Neste experimento foi mostrada uma pequena introdução prática do uso
+de um display LCD com um microcontrolador, bem como à própria
+plataforma Arduino.
