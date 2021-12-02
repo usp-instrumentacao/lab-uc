@@ -3,6 +3,15 @@
 ## Introdução
 
 ## Termistores 
+Termistores são semicondutores sensíveis a temperaturas, em outras palavras, são resistores de resistência variável, que variam sua resistência em função da temperatura.
+
+Existem dois tipos:
+
+NTC (Negative Temperature Coefficient), que diminui sua resistência com o aumento da temperatura.
+PTC (Positive Temperature Coefficient), que aumenta sua resistência com o aumento da temperatura. 
+
+Obs: A maioria dos metais possuem coeficiente positivo de temperatura.
+
 
 ## Código
 Códigos auxiliares para o utilização de módulos sensores de diversos
