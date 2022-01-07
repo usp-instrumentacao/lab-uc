@@ -1,9 +1,9 @@
 # Experimentos com Microcontroladores
-Este repositório contem informações a respeito dos experimentos
-preparados para a disciplina de Introdução à Instrumentação Biomédica.
+Este repositório contém informações a respeito dos experimentos
+preparados para a disciplina Introdução à Instrumentação Biomédica oferecida pelo Departamento de Física da Faculdade de Filosofia, Ciências e Letras de Ribeirão Preto - Universidade de São Paulo.
 
 Cada experimento é composto de um arquivo `README.md` que contém a
-descrissão geral e especificações do experimento, uma ou mais pastas
+descrição geral e especificações do experimento, uma ou mais pastas
 com nomenclatura iniciada em `cod_arduino_` contendo os códigos `.ino` 
 (códigos utilizados para a programação do microcontrolador), um arquivo
 denominado `esquematico.png` exibindo o esquema de conexão do circuito 
@@ -14,7 +14,7 @@ componentes e outras informações gráficas relevantes ao experimento.
 
 Ao clicar em um dos hyperlinks neste arquivo você será redirecionado
 para a pasta do experimento no GitHub onde encontrará todos os
-arquivos mencionados. Você também pode navegar pelo repositório onde
+arquivos mencionados. Também é possível navegar pelo repositório onde
 os experimentos se encontram na pasta chamada `experimentos/`.
 
 ## Introdução
