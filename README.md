@@ -1,6 +1,6 @@
 # Experimentos com Microcontroladores
-Este repositório contém informações a respeito dos experimentos
-preparados para a disciplina Introdução à Instrumentação Biomédica oferecida pelo Departamento de Física da Faculdade de Filosofia, Ciências e Letras de Ribeirão Preto - Universidade de São Paulo.
+Este repositório contém informações a respeito de experimentos
+preparados para as disciplinas 5910130 - Eletrônica e 5910230 - Introdução à Instrumentação Biomédica oferecidas pelo Departamento de Física da Faculdade de Filosofia, Ciências e Letras de Ribeirão Preto - Universidade de São Paulo.
 
 Cada experimento é composto de um arquivo `README.md` que contém a
 descrição geral e especificações do experimento, uma ou mais pastas
@@ -15,7 +15,7 @@ componentes e outras informações gráficas relevantes ao experimento.
 Ao clicar em um dos hyperlinks neste arquivo você será redirecionado
 para a pasta do experimento no GitHub onde encontrará todos os
 arquivos mencionados. Também é possível navegar pelo repositório onde
-os experimentos se encontram na pasta chamada `experimentos/`.
+os experimentos estão na pasta chamada `experimentos/`.
 
 ## Introdução
 0. [Introdução à Plataforma Arduino e ao ESP32](https://github.com/Experimentos-Microcontroladores/instrumentacao-biomedica/tree/main/instalacao)
