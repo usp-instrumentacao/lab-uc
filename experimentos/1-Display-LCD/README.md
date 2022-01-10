@@ -66,17 +66,16 @@ interface com o LCD:
 #define DISPLAY_D7 5
 ``` 
 A expressão `#define` não cria nenhuma variável na memória, apenas
-atribui um valor a uma expressão, que na hora da compilação do código
-será trocada pelo seu valor. Neste contexto, todo lugar no código que
-possuir a expressão `DISPLAY_RS` será compilada como se tivéssemos
-explicitamente colocado o número `15` no lugar. Isso é uma ótima
+atribui um valor a uma expressão, que no momento da compilação do código
+será trocada pelo seu valor. Neste contexto, a expressão `DISPLAY_RS` será compilada como se tivéssemos
+explicitamente colocado o número `15` no código. Isso é uma ótima
 prática de programação, pois torna o código mais legível e evita
-números arbitrários no meio do código. Caso conecte o display de
+números arbitrários. Caso conecte o display de
 maneira diferente, é necessário apenas mudar este escopo para se
 adequar ao seu modo de conexão (desde que todos esses pinos sejam
 digitais e de uso geral).
 
-Em seguida, nós instanciamos um objeto `display_lcd` da classe
+Em seguida, instanciamos um objeto `display_lcd` da classe
 `LiquidCrystal` fornecida pela biblioteca:
 ```
 LiquidCrystal display_lcd(DISPLAY_RS, DISPLAY_EN, DISPLAY_D4, DISPLAY_D5, DISPLAY_D6, DISPLAY_D7);
@@ -93,7 +92,7 @@ int dt=100;
 
 Na função `setup()`, precisamos iniciar a comunicação serial, iniciar
 o display e também limpá-lo (isto é, apagar tudo que estiver escrito
-nele). Esta função é executada sempre que o microcontrolador é
+nele). A função `setup()` é executada sempre que o microcontrolador é
 iniciado.
 ```
 void setup() 
@@ -116,12 +115,12 @@ void setup()
 No setup utilizamos `Serial.begin(115200)` para inicializar a
 comunicação serial. O parâmetro passado ao método (115200) é a
 *baud-rate*, frequência da comunicação serial em baud/s. 
-o método `display_lcd.begin()` inicia o display com o sua resolução
+O método `display_lcd.begin()` inicia o display com o sua resolução
 como parâmetro (16x2). o método `display_lcd.setCursor()` define onde que será
 iniciada a escrita no display pelo método `display_lcd.print()`, que
 tem como parâmetro a string que conterá os caracteres a serem
 escritos. Temos também a função `delay()`, que basicamente diz ao
-microprocessador "esperar" um tempo (no caso 2000ms), deixando o
+microprocessador "esperar" um tempo (no caso 2000 ms), deixando o
 sistema ocioso. Por fim, o método `display_lcd.clear()` limpa tudo que
 já foi escrito no display. 
  
@@ -142,15 +141,14 @@ void loop()
 ```
 Dentro do loop, temos os métodos do display `setCursor()` e `print()` novamente,
 escrevendo no display "Texto linha 0" e "Texto linha 1"
-respectivamente nas linhas 0 e 1. Por fim, o delay no final do loop
+nas linhas 0 e 1, respectivamente. Por fim, o delay no final do loop
 determina o tempo que o microcontrolador deverá esperar antes de
 iniciar o loop novamente. Sempre é uma boa prática colocar delays em
 certas partes dos códigos, principalmente considerando que os
 dispositivos conectados podem necessitar de um certo tempo para
-"acomodar" os sinais elétricos (visto que cada dispositivo reage de um
-jeito aos sinais).
+"acomodar" os sinais elétricos (visto que cada dispositivo pode reagir de maneira diferente aos sinais).
 
 ## Conclusão
 Neste experimento foi mostrada uma pequena introdução prática do uso
 de um display LCD com um microcontrolador, bem como à própria
-plataforma Arduino.
+plataforma Arduino/ESP32.
