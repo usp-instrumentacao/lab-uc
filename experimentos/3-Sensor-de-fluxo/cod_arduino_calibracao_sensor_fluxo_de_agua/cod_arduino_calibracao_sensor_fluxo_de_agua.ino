@@ -104,8 +104,9 @@ void loop()
    Serial.println("Número de pulsos para fluir 1 litro de água = " + String(contador_pulsos));
 
    // Exibir valor no display
+	 display_lcd.clear();
    display_lcd.setCursor(0,0);
-   display_lcd.print("Nº pulsos/L");
+   display_lcd.print("Num. pulsos/L:");
    display_lcd.setCursor(0,1);
    display_lcd.print(String(contador_pulsos));
 
