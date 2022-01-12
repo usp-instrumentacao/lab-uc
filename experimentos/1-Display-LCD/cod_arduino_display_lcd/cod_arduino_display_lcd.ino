@@ -37,7 +37,6 @@ LiquidCrystal lcd(DISPLAY_RS, DISPLAY_EN, DISPLAY_D4, DISPLAY_D5, DISPLAY_D6, DI
 // Declaração variáveis globais
 const int dt = 100; //ms
  
-// Setup --------------------------------------------------------------------------------------------------
 void setup() 
 {
   // Inicia o display 16x2
@@ -48,21 +47,18 @@ void setup()
   // Delay de inicialização
   delay(2000);
 
-  // Limpa o display 16x2
+  // Limpa o display
   lcd.clear();
 }
-// end Setup ----------------------------------------------------------------------------------------------
 
-// Main Loop ----------------------------------------------------------------------------------------------
 void loop()
 {
   // Exibir texto no display
-  display_lcd.setCursor(0,0); //inicia texto na posição 0 da linha 0
+  display_lcd.setCursor(0,0); // Inicia texto na posição 0 da linha 0
   display_lcd.print("Texto linha 0");
-  display_lcd.setCursor(0,1); //inicia texto na posição 0 da linha 1
+  display_lcd.setCursor(0,1); // Inicia texto na posição 0 da linha 1
   display_lcd.print("Texto linha 1");
   
-  // loop delay
+  // Loop delay
   delay(dt);
 }
-//End main loop -------------------------------------------------------------------------------------------
