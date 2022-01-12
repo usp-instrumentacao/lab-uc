@@ -54,7 +54,7 @@ um ótimo artigo em:
 
 ## Código
 Primeiramente, precisamos incluir a biblioteca para utilização do LCD:
-```
+```ino
 #include <LiquidCrystal.h>
 ```	
 Após isso, definimos os pinos que serão utilizados para a
@@ -81,7 +81,7 @@ mais a diante.
 
 Em seguida, instanciamos um objeto `display_lcd` da classe
 `LiquidCrystal` fornecida pela biblioteca:
-```
+```ino
 LiquidCrystal lcd(DISPLAY_RS, DISPLAY_EN, DISPLAY_D4, DISPLAY_D5, DISPLAY_D6, DISPLAY_D7);
 ```
 A criação do objeto é semelhante à de uma variável, com a diferença de
@@ -94,7 +94,7 @@ funções, mas restritas apenas àquele objeto ou classe.
 
 Por fim é declarada uma variável global constante que será utilizada
 como delay de execução do loop:
-```
+```ino
 const int dt = 100;
 ```
 Variáveis globais podem ser acessadas a partir de qualquer escopo,
@@ -105,7 +105,7 @@ execução, permitindo o compilador otimizar o programa final.
 Na função `setup()`, precisamos iniciar o display e também limpá-lo
 (isto é, apagar tudo que estiver escrito nele). A função `setup()` é
 executada sempre que o microcontrolador é iniciado.
-```arduino
+```ino
 void setup() 
 {
   // Inicia o display 16x2
@@ -131,7 +131,7 @@ já foi escrito no display.
  
 Após o setup, a função `loop()` é executada indefinidamente (um loop infinito)
 enquanto o dispositivo estiver ligado.
-```c++
+```ino
 void loop()
 {
   // Exibir texto no display
