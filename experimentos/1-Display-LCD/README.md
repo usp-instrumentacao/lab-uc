@@ -135,10 +135,10 @@ enquanto o dispositivo estiver ligado.
 void loop()
 {
   // Exibir texto no display
-  display_lcd.setCursor(0,0); // Inicia texto na posição 0 da linha 0
-  display_lcd.print("Texto linha 0");
-  display_lcd.setCursor(0,1); // Inicia texto na posição 0 da linha 1
-  display_lcd.print("Texto linha 1");
+  lcd.setCursor(0,0); // Inicia texto na posição 0 da linha 0
+  lcd.print("Texto linha 0");
+  lcd.setCursor(0,1); // Inicia texto na posição 0 da linha 1
+  lcd.print("Texto linha 1");
   
   // Loop delay
   delay(dt);
