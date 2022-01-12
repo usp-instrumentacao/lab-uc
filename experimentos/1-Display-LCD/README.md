@@ -46,7 +46,7 @@ função. A documentação para tal pode ser acessada em:
 Caso queira entender um pouco mais a fundo o funcionamento de LCDs, há
 um ótimo artigo em:
 [https://www.embarcados.com.br/modulo-de-display-lcd/](https://www.embarcados.com.br/modulo-de-display-lcd/).
- 
+
 ## Circuito
 ![Esquemático](esquematico.png)
 
@@ -56,7 +56,7 @@ um ótimo artigo em:
 Primeiramente, precisamos incluir a biblioteca para utilização do LCD:
 ```ino
 #include <LiquidCrystal.h>
-```	
+```
 Após isso, definimos os pinos que serão utilizados para a
 interface com o LCD:
 ```ino
@@ -106,18 +106,18 @@ Na função `setup()`, precisamos iniciar o display e também limpá-lo
 (isto é, apagar tudo que estiver escrito nele). A função `setup()` é
 executada sempre que o microcontrolador é iniciado.
 ```ino
-void setup() 
+void setup()
 {
-  // Inicia o display 16x2
-  lcd.begin(16, 2);
-  lcd.setCursor(0,0);
-  lcd.print("Iniciando...");
+    // Inicia o display 16x2
+    lcd.begin(16, 2);
+    lcd.setCursor(0,0);
+    lcd.print("Iniciando...");
 
-  // Delay de inicialização
-  delay(2000);
+    // Delay de inicialização
+    delay(2000);
 
-  // Limpa o display
-  lcd.clear();
+    // Limpa o display
+    lcd.clear();
 }
 ```
 O método `lcd.begin()` inicia o display com o sua resolução
@@ -127,21 +127,21 @@ tem como parâmetro a string que conterá os caracteres a serem
 escritos. Temos também a função `delay()`, que basicamente diz ao
 microprocessador "esperar" um tempo (no caso 2000 ms), deixando o
 sistema ocioso. Por fim, o método `lcd.clear()` limpa tudo que
-já foi escrito no display. 
- 
+já foi escrito no display.
+
 Após o setup, a função `loop()` é executada indefinidamente (um loop infinito)
 enquanto o dispositivo estiver ligado.
 ```ino
 void loop()
 {
-  // Exibir texto no display
-  lcd.setCursor(0,0); // Inicia texto na posição 0 da linha 0
-  lcd.print("Texto linha 0");
-  lcd.setCursor(0,1); // Inicia texto na posição 0 da linha 1
-  lcd.print("Texto linha 1");
-  
-  // Loop delay
-  delay(dt);
+    // Exibir texto no display
+    lcd.setCursor(0,0); // Inicia texto na posição 0 da linha 0
+    lcd.print("Texto linha 0");
+    lcd.setCursor(0,1); // Inicia texto na posição 0 da linha 1
+    lcd.print("Texto linha 1");
+
+    // Loop delay
+    delay(dt);
 }
 ```
 Dentro do loop, temos os métodos do display `setCursor()` e `print()`
