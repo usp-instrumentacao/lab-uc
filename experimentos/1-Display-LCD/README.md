@@ -59,7 +59,7 @@ Primeiramente, precisamos incluir a biblioteca para utilização do LCD:
 ```	
 Após isso, definimos os pinos que serão utilizados para a
 interface com o LCD:
-```
+```ino
 #define DISPLAY_RS 15
 #define DISPLAY_EN 2
 #define DISPLAY_D4 4
@@ -105,7 +105,7 @@ execução, permitindo o compilador otimizar o programa final.
 Na função `setup()`, precisamos iniciar o display e também limpá-lo
 (isto é, apagar tudo que estiver escrito nele). A função `setup()` é
 executada sempre que o microcontrolador é iniciado.
-```
+```arduino
 void setup() 
 {
   // Inicia o display 16x2
@@ -131,7 +131,7 @@ já foi escrito no display.
  
 Após o setup, a função `loop()` é executada indefinidamente (um loop infinito)
 enquanto o dispositivo estiver ligado.
-```
+```c++
 void loop()
 {
   // Exibir texto no display
