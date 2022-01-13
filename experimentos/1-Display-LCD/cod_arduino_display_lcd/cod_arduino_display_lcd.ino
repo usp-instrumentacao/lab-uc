@@ -24,15 +24,15 @@
 #include <LiquidCrystal.h>
 
 // Definição de pinos para o display 16x2
-#define DISPLAY_RS 15
-#define DISPLAY_EN 2
-#define DISPLAY_D4 4
-#define DISPLAY_D5 16
-#define DISPLAY_D6 17
-#define DISPLAY_D7 5
+#define LCD_RS 15
+#define LCD_EN 2
+#define LCD_D4 4
+#define LCD_D5 16
+#define LCD_D6 17
+#define LCD_D7 5
 
 // Declaração do display lcd (rs, en, d4, d5, d6, d7);
-LiquidCrystal lcd(DISPLAY_RS, DISPLAY_EN, DISPLAY_D4, DISPLAY_D5, DISPLAY_D6, DISPLAY_D7);
+LiquidCrystal lcd(LCD_RS, LCD_EN, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
 // Declaração variáveis globais
 const int dt = 100; //ms
