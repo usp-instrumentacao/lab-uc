@@ -4,7 +4,7 @@
  *	5910130 - Eletrônica
  *
  * Título:
- *	sensor de fluxo de água (Calibração Do Módulo)
+ *	Sensor de fluxo de água (Calibração Do Módulo)
  *
  * Autores:
  *	Carlos Eduardo Gallo Filho
@@ -43,11 +43,11 @@
 #define LCD_D7 5
 
 // Declaração do display lcd (rs, en, d4, d5, d6, d7);
-LiquidCrystal display_lcd(LCD_RS, LCD_EN, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
+LiquidCrystal lcd(LCD_RS, LCD_EN, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
 // Declaração de variáveis globais
-int contador_pulsos; //Variável para a quantidade de pulsos
-int aux_plot=0;
+unsigned int contador_pulsos; //Variável para a quantidade de pulsos
+int aux_plot = 0;
 
 void setup() {
 
