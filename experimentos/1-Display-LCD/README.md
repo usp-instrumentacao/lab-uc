@@ -108,16 +108,16 @@ executada sempre que o microcontrolador é iniciado.
 ```ino
 void setup()
 {
-	// Inicia o display 16x2
-	lcd.begin(16, 2);
-	lcd.setCursor(0,0);
-	lcd.print("Iniciando...");
+    // Inicia o display 16x2
+    lcd.begin(16, 2);
+    lcd.setCursor(0,0);
+    lcd.print("Iniciando...");
 
-	// Delay de inicialização
-	delay(2000);
+    // Delay de inicialização
+    delay(2000);
 
-	// Limpa o display
-	lcd.clear();
+    // Limpa o display
+    lcd.clear();
 }
 ```
 O método `lcd.begin()` inicia o display com o sua resolução
@@ -134,14 +134,14 @@ enquanto o dispositivo estiver ligado.
 ```ino
 void loop()
 {
-	// Exibir texto no display
-	lcd.setCursor(0,0); // Inicia texto na posição 0 da linha 0
-	lcd.print("Texto linha 0");
-	lcd.setCursor(0,1); // Inicia texto na posição 0 da linha 1
-	lcd.print("Texto linha 1");
+    // Exibir texto no display
+    lcd.setCursor(0,0); // Inicia texto na posição 0 da linha 0
+    lcd.print("Texto linha 0");
+    lcd.setCursor(0,1); // Inicia texto na posição 0 da linha 1
+    lcd.print("Texto linha 1");
 
-	// Loop delay
-	delay(dt);
+    // Loop delay
+    delay(dt);
 }
 ```
 Dentro do loop, temos os métodos do display `setCursor()` e `print()`
