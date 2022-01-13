@@ -1,16 +1,20 @@
 # Experimentos com Microcontroladores
 Este repositório contém informações a respeito de experimentos
-preparados para as disciplinas 5910130 - Eletrônica e 5910230 - Introdução à Instrumentação Biomédica oferecidas pelo Departamento de Física da Faculdade de Filosofia, Ciências e Letras de Ribeirão Preto - Universidade de São Paulo.
+preparados para as disciplinas 5910130 - Eletrônica e 5910230 -
+Introdução à Instrumentação Biomédica oferecidas pelo Departamento de
+Física da Faculdade de Filosofia, Ciências e Letras de Ribeirão
+Preto - Universidade de São Paulo.
 
 Cada experimento é composto de um arquivo `README.md` que contém a
 descrição geral e especificações do experimento, uma ou mais pastas
-com nomenclatura iniciada em `cod_arduino_` contendo os códigos `.ino` 
-(códigos utilizados para a programação do microcontrolador), um arquivo
-denominado `esquematico.png` exibindo o esquema de conexão do circuito 
-elétrico utilizado e um ou mais arquivos de imagem `.png` seguindo a 
-nomenclatura: `imagem1.png`, `imagem2.png`, etc. Essas imagens exibem 
-fotos do circuito montado em uma protoboard junto da identificação dos 
-componentes e outras informações gráficas relevantes ao experimento.
+com nomenclatura iniciada em `cod-` contendo os códigos `.ino`
+(códigos utilizados para a programação do microcontrolador), um
+arquivo denominado `esquematico.png` exibindo o esquema de conexão do
+circuito elétrico utilizado e um ou mais arquivos de imagem `.png`
+seguindo a nomenclatura: `imagem1.png`, `imagem2.png`, etc. Essas
+imagens exibem fotos do circuito montado em uma protoboard junto da
+identificação dos componentes e outras informações gráficas relevantes
+ao experimento.
 
 Ao clicar em um dos hyperlinks neste arquivo você será redirecionado
 para a pasta do experimento no GitHub onde encontrará todos os
