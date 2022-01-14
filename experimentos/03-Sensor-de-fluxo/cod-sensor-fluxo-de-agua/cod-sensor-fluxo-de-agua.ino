@@ -15,6 +15,7 @@
  *
  *	Descrição:
  *		descrição*
+ *
  * Referências:
  *		https://microcontrollerslab.com/water-flow-sensor-pinout-interfacing-with-arduino-measure-flow-rate/
  *		https://how2electronics.com/iot-water-flow-meter-using-esp8266-water-flow-sensor/
@@ -26,7 +27,13 @@
 //incluir bibliotecas
 #include <LiquidCrystal.h>
 
-//Definição pino do sensor
+// Botão para alternar entre o modo de calibração e leitura
+#define TOGGLE_MODE_PIN 23
+
+// Botão para iniciar e finalizar a calibração
+#define CALIBRATION_PIN 22
+
+//Definição pino do sensor de fluxo
 #define SENSOR_PIN 34
 
 // Definição de pinos para o display 16x2
@@ -37,59 +44,97 @@
 #define LCD_D6 17
 #define LCD_D7 5
 
-// Declaração do display lcd (rs, en, d4, d5, d6, d7);
+// Instanciação do display lcd (rs, en, d4, d5, d6, d7);
 LiquidCrystal lcd(LCD_RS, LCD_EN, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
+// Variáveis globais
+const int tempo_amostragem = 1000; // Tempo de leitura do sensor em ms
+
 float vazao; // Variável para armazenar valor de vazão
-float frequencia_sensor; // Variável para armazenar a frequência do sensor
-int contador_pulsos; // Variável para a quantidade de pulsos
-int coef_sensor;
+
+int coef_sensor; // pulsos/litro
+
+volatile int count_pulsos = 0; // Conta a quantidade de pulsos medidos
+volatile bool calibration_mode = false; // Quando true, entra no modo de calibração.
+volatile bool calibrating = false; // Quando true, começa a contagem dos pulsos p/ calibração
 
 void setup()
 {
-	//Inicia as comunicações seriais
-	Serial.begin(115200);
-
-	//Inicia o display 16x2
+	// Inicia o display 16x2
 	lcd.begin(16, 2);
 	lcd.setCursor(0,0);
 	lcd.print("Iniciando...");
 
-	//Delay de inicialização
+	// Delay de inicialização
 	delay(2000);
 
-	//Limpa o display 16x2
+	// Limpa o display 16x2
 	lcd.clear();
 
-	//Definição do pino do sensor e modo de interrupção
+	// Declaração dos modos dos pinos utilizados
+	pinMode(TOGGLE_MODE_PIN, INPUT);
+	pinMode(CALIBRATION_PIN, INPUT);
 	pinMode(SENSOR_PIN, INPUT);
-	attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), interrup_function, RISING);
+
+	// Anexa os pinos especificados a uma função de interrupção
+	attachInterrupt(digitalPinToInterrupt(TOGGLE_MODE_PIN), toggle_mode, RISING);
+	attachInterrupt(digitalPinToInterrupt(CALIBRATION_PIN), calibration, RISING);
 }
 
 void loop()
 {
-	// Inicia o ciclo de contagem
-	contador_pulsos = 0; // Zera o contador
-	interrupts(); // Habilita interrupção
-	delay(1000);
-	noInterrupts(); // Desabilita interrupção
+	if(calibration_mode)
+		{
+			lcd.clear();
+			lcd.print("Modo de calibração");
+			
+			if(calibrating)
+				{
+					lcd.clear();
+					lcd.print("Inicio calibração");
 
-	// Processamento dos dados obtidos
-	frequencia_sensor = contador_pulsos; // pulsos/segundo
-	vazao = frequencia_sensor/coeficiente_sensor; // litros/segundo --> coef. pulsos p/ litro
-	vazao = vazao * 60; // litros/minuto
+					count_pulsos = 0;
+					attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), sensor_count, RISING);
+					while(calibrating) {}
+					detachInterrupt(digitalPinToInterrupt(SENSOR_PIN));
 
-	// Exibir valor no monitor serial do arduino
-	Serial.println("Vazão [L/min] = " + String(vazao));
+					coef_sensor = count_pulsos; // Num pulsos contados para 1 litro
 
-	// Exibir valor no display
-	lcd.setCursor(0,0);
-	lcd.print("Vazao [L/min]");
-	lcd.setCursor(0,1);
-	lcd.print(String(vazao));
+					lcd.clear();
+					lcd.print("Fim calibração");
+					lcd.setCursor(0,1);
+					lcd.print(String(coef_sensor) + " Pulsos/L");
+				}
+		}
+	else
+		{
+			// Cada leitura dura o tempo definido por tempo_amostragem
+			count_pulsos = 0;
+			attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), sensor_count, RISING);
+			delay(tempo_amostragem);
+			detachInterrupt(digitalPinToInterrupt(SENSOR_PIN));
+			vazao = count_pulsos / coef_sensor * (tempo_amostragem / 1000); // [pulsos] / [pulsos/L] * [segundos]
+			vazao = vazao * 60; // Conversão de [L/s] para [L/min]
+
+			// Exibe a vazão no LCD
+			lcd.clear();
+			lcd.print("Vazao [L/min]");
+			lcd.setCursor(0,1);
+			lcd.print(String(vazao));
+		}
 }
 
-void interrup_function()
+void toggle_mode()
 {
-	contador_pulsos++; //Incrementa o contador
+	calibration_mode = !calibration_mode;
+}
+
+void calibration()
+{
+	calibrating = !calibrating;
+}
+
+void sensor_count()
+{
+	count_pulsos++; //Incrementa o contador
 }
