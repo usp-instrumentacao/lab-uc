@@ -48,11 +48,12 @@
 LiquidCrystal lcd(LCD_RS, LCD_EN, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
 // Variáveis globais
+const float volume_calibracao = 0.5; // Quantidade de água utilizada na calibração em litros
 const int tempo_amostragem = 1000; // Tempo de leitura do sensor em ms
 
 float vazao; // Variável para armazenar valor de vazão
 
-int coef_sensor; // pulsos/litro
+float coef_sensor; // pulsos/litro
 
 volatile int count_pulsos = 0; // Conta a quantidade de pulsos medidos
 volatile bool calibration_mode = false; // Quando true, entra no modo de calibração.
@@ -86,24 +87,25 @@ void loop()
 	if(calibration_mode)
 		{
 			lcd.clear();
-			lcd.print("Modo de calibração");
-			
+			lcd.print("Modo calibracao");
+			delay(1000);
 			if(calibrating)
 				{
 					lcd.clear();
-					lcd.print("Inicio calibração");
+					lcd.print("Calibrando...");
 
 					count_pulsos = 0;
 					attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), sensor_count, RISING);
 					while(calibrating) {}
 					detachInterrupt(digitalPinToInterrupt(SENSOR_PIN));
 
-					coef_sensor = count_pulsos; // Num pulsos contados para 1 litro
+					coef_sensor = count_pulsos/volume_calibracao; // Num pulsos contados para 1 litro
 
 					lcd.clear();
-					lcd.print("Fim calibração");
+					lcd.print("Fim calibracao");
 					lcd.setCursor(0,1);
 					lcd.print(String(coef_sensor) + " Pulsos/L");
+					while(calibration_mode) {}
 				}
 		}
 	else
