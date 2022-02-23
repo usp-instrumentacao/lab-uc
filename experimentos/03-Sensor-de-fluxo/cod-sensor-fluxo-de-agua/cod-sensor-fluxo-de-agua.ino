@@ -33,7 +33,7 @@
 // Botão para iniciar e finalizar a calibração
 #define CALIBRATION_PIN 22
 
-//Definição pino do sensor de fluxo
+// Definição pino do sensor de fluxo
 #define SENSOR_PIN 34
 
 // Definição de pinos para o display 16x2
@@ -52,7 +52,6 @@ const float volume_calibracao = 0.5; // Quantidade de água utilizada na calibra
 const int tempo_amostragem = 1000; // Tempo de leitura do sensor em ms
 
 float vazao; // Variável para armazenar valor de vazão
-
 float coef_sensor; // pulsos/litro
 
 volatile int count_pulsos = 0; // Conta a quantidade de pulsos medidos
@@ -105,7 +104,8 @@ void loop()
 					lcd.print("Fim calibracao");
 					lcd.setCursor(0,1);
 					lcd.print(String(coef_sensor) + " Pulsos/L");
-					while(calibration_mode) {}
+
+					while(calibration_mode) {} // Aguarda o modo de calibração ser desativado
 				}
 		}
 	else
