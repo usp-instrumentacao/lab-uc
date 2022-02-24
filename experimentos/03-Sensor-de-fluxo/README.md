@@ -5,6 +5,14 @@ Neste experimento será demonstrado a utilização e calibração de um
 sensor de fluxo de água usando a plataforma Arduino/ESP32.
 
 ## Sensor de fluxo de água
+O sensor de fluxo de água utilizado é constituído de um rotor e um
+sensor de campo magnético que atua por efeito Hall. A cada revolução
+do rotor (provocada pelo fluxo de água) o sensor de campo magnético
+emite um pulso elétrico, resultante da alteração do campo causada pela
+revolução. Dessa forma, é possível se calcular o volume de água que
+passa pelo dispositivo, necessitando apenas saber qual o volume
+responsável por provocar uma revolução e quantas vezes foram emitidos
+pulsos elétricos em um determinado intervalo de tempo.
 
 ## Circuito
 ![Esquemático](esquematico.png)
@@ -170,4 +178,113 @@ capacidade de serem utilizados para interrupções, que são mapeados
 com valores diferentes dos digitais, por mais que sejam exatamente o
 mesmo pino).
 
+Na função loop, são definidos os dois modos de operação. A variável
+`calibration_mode` é lida no início de cada ciclo e determina qual
+modo de operação estará sendo executado.
+```ino
+void loop()
+{
+  if(calibration_mode)
+    {
+      lcd.clear();
+      lcd.print("Modo calibracao");
+      delay(1000);
+      if(calibrating)
+        {
+          lcd.clear();
+          lcd.print("Calibrando...");
+
+          count_pulsos = 0;
+          attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), sensor_count, RISING);
+          while(calibrating) {}
+          detachInterrupt(digitalPinToInterrupt(SENSOR_PIN));
+
+          coef_sensor = count_pulsos/volume_calibracao; // Num pulsos contados para 1 litro
+
+          lcd.clear();
+          lcd.print("Fim calibracao");
+          lcd.setCursor(0,1);
+          lcd.print(String(coef_sensor) + " Pulsos/L");
+
+          while(calibration_mode) {} // Aguarda o modo de calibração ser desativado
+        }
+    }
+  else
+    {
+      // Cada leitura dura o tempo definido por tempo_amostragem
+      count_pulsos = 0;
+      attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), sensor_count, RISING);
+      delay(tempo_amostragem);
+      detachInterrupt(digitalPinToInterrupt(SENSOR_PIN));
+      vazao = count_pulsos / coef_sensor * (tempo_amostragem / 1000); // [pulsos] / [pulsos/L] * [segundos]
+      vazao = vazao * 60; // Conversão de [L/s] para [L/min]
+
+      // Exibe a vazão no LCD
+      lcd.clear();
+      lcd.print("Vazao [L/min]");
+      lcd.setCursor(0,1);
+      lcd.print(String(vazao));
+    }
+}
+```
+
+Dentro do modo calibração, é escrita uma mensagem no display LCD
+especificando tal modo e aguardando 1 segundo até que seja feita a
+leitura da outra variável de estado `calibrating`. Caso esta seja
+`false`, o programa termina a execução do bloco `if` e inicia
+novamente o loop, voltando ao início do bloco `if`. No caso em que a
+variável `calibrating` seja `true`, o programa iniciará a calibração,
+escrevendo no display LCD, zerando a variável contadora de pulsos e
+iniciando o processo de leitura do sensor. A leitura é feita através
+do início da escuta de interrupção no pino do sensor, fazendo com que
+a cada pulso emitido seja executada a função `sensour_count()`
+(definida no final do código), que incrementa o valor da variável
+`count_pulsos` cada vez que é executada. 
+
+O processo de calibração dura até que o valor da variável
+`calibrating` seja alterado. Isso é feito através do loop `while` com
+a variável `calibrating` como condição. Após o término das leituras, a
+escuta por interrupção no pino do sensor é interrompida e o
+coeficiente é calculado de acordo com o número de pulsos lidos. Por
+fim, o coeficiente é mostrado no LCD e outro loop `while` é iniciado
+aguardando que seja pressionado o botão para mudança de modo.
+
+No modo leitura, a escuta por interrupção é iniciada e permanece ativa
+pelo tempo especificado na variável `tempo_amostragem`. Dentre este
+tempo são contados os números de pulsos assim como no processo de
+calibração, e então ao cabo do processo de leitura a vazão é calculada
+de acordo com o número de pulsos lidos e convertido para a unidade de
+medida litros por minuto. Após isso a vazão é exibida no LCD e
+permanece até que a próxima medida seja realizada.
+
+Para completar o programa, falta a definição das funções executadas
+pelas interrupções.
+```ino
+void toggle_mode()
+{
+  calibration_mode = !calibration_mode;
+}
+
+void calibration()
+{
+  calibrating = !calibrating;
+}
+
+void sensor_count()
+{
+  count_pulsos++; //Incrementa o contador
+}
+```
+
+Tanto a função `toggle_mode()` quanto a `calibration()` invertem o
+valor atual de suas respectivas variáveis, trocando seus valores de
+`true` para `false` e vice versa quando executadas. Já a função
+`sensor_count()` apenas incrementa em uma unidade o valor da variável
+global `count_pulsos`.
+
 ## Conclusão
+Neste experimento foi introduzido o conceito e a demonstração de
+interrupções utilizando o sensor de fluxo de água. Também foi
+exemplificada uma maneira de dividir a operação do sistema em
+diferentes modos, permitindo que seja possível realizar duas tarefas
+distintas (calibração e medição) em um único programa.
