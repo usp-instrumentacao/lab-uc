@@ -27,7 +27,7 @@ funções dos pinos.
 
 
 Primeiramente vamos incluir a biblioteca necessária para a utilização do display LCD ( <LiquidCrystal.h>)
-e vamos definir os pinos do termistor e os pinos do display LCD.
+e vamos definir os pinos do termistor, e os pinos do display LCD.
 ```
 #include <LiquidCrystal.h>
 
