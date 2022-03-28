@@ -23,11 +23,12 @@ funções dos pinos.
 
 
 * Licença: GNU GPLv3
-*
-*/
 
+
+
+Primeiramente vamos incluir a biblioteca necessária para a utilização do display LCD ( <LiquidCrystal.h>)
+e vamos definir os pinos do termistor e os pinos do display LCD.
 ```
-//incluir bibliotecas
 #include <LiquidCrystal.h>
 
 //Definição pino termistor
@@ -43,12 +44,15 @@ funções dos pinos.
 
 // Declaração do display lcd (rs, en, d4, d5, d6, d7);
 LiquidCrystal display_lcd(DISPLAY_RS, DISPLAY_EN, DISPLAY_D4, DISPLAY_D5, DISPLAY_D6, DISPLAY_D7);
-
+```
+Definiremos os valores iniciais das variáveis de interesse.
+```
 // Declaração variáveis globais
 int dt=100; //ms
 float t_value = 0.0;
 float temp_value = 0.0;
- 
+ ```
+ ```
 // Setup --------------------------------------------------------------------------------------------------
 void setup() 
 {
@@ -72,7 +76,10 @@ void setup()
   
 }
 // end Setup ----------------------------------------------------------------------------------------------
-
+``` 
+Enfim, faremos a leitura dos pinos analógicos, converteremos os valores para tensão elétrica e por fim faremos a conversão destes 
+valores para valores de temperatura (°C) e mostraremos estes valores no display LCD. 
+```
 // Main Loop ----------------------------------------------------------------------------------------------
 void loop()
 {
