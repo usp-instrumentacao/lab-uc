@@ -52,6 +52,7 @@ int dt=100; //ms
 float t_value = 0.0;
 float temp_value = 0.0;
  ```
+Iniciaremos as comunicações seriais e o display LCD, além de definir o pino do sensor como uma ENTRADA (INPUT). 
  ```
 // Setup --------------------------------------------------------------------------------------------------
 void setup() 
