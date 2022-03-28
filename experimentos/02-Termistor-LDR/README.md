@@ -109,3 +109,6 @@ void loop()
 ![Esquemático](esquematico.png)
 ![Foto do circuito montado em uma protoboard.](imagem.png)
 
+## Conclusão 
+Neste experimento utilizamos um termistor para medir valores de tensão do circuito e com estes valores aferimos a temperatura. 
+
