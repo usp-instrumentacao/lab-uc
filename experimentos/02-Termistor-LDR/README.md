@@ -26,6 +26,7 @@ funções dos pinos.
 *
 */
 
+```
 //incluir bibliotecas
 #include <LiquidCrystal.h>
 
@@ -94,7 +95,7 @@ void loop()
   
   // loop delay
   delay(dt);
-  
+ ``` 
 }
 ## Circuito
 ![Esquemático](esquematico.png)
