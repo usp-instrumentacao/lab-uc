@@ -1,6 +1,7 @@
 # Utilizando o Termistor (ou LDR)
 
 ## Introdução
+Neste experimento utilizaremos o termistor para medir temperatura. Primeiramente vamos obter a tensão do circuito e depois converter os valores de tensão para temperatura. 
 
 ## Termistores 
 Termistores são semicondutores sensíveis a temperaturas, em outras palavras, são resistores de resistência variável, que variam sua resistência em função da temperatura.
